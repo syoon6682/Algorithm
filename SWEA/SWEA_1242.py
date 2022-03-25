@@ -91,5 +91,5 @@ for tc in range(1, T + 1):
     test_code = trans_16_to_2(test_code)
     start_point = find_start(0, test_code)
 
-    print(f'#{tc} {test_code}')
+    print(f'#{tc} {start_point}')
 
