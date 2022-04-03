@@ -1,4 +1,6 @@
-N = int(input())
+import sys
+
+N = int(sys.stdin.readline())
 queue = list()
 start = -1
 end = -1
@@ -10,15 +12,6 @@ def push(n):
     end += 1
 
 
-def pop():
-    global start
-    if start == end:
-        print(-1)
-    else:
-        start += 1
-        print(start)
-
-
 def size():
     global start, end
     print(end-start)
@@ -26,39 +19,48 @@ def size():
 
 def empty():
     global start, end
-    if end - start <= 1:
-        print(0)
+    if end == start:
+        return 1
     else:
-        print(1)
+        return 0
 
 
 def front():
-    if empty():
+    if end == start:
         print(-1)
     else:
         print(queue[start+1])
 
 
 def back():
-    if empty():
+    if end == start:
         print(-1)
     else:
         print(queue[end])
 
 
+def pop():
+    global start
+    if end == start:
+        print(-1)
+    else:
+        start += 1
+        print(queue[start])
+
+
 for _ in range(N):
-    temp = list(map(str, input().split()))
+    temp = list(map(str, sys.stdin.readline().split()))
     if len(temp) > 1:
         push(int(temp[1]))
 
     elif temp[0] == 'pop':
-        front()
+        pop()
 
     elif temp[0] == 'size':
         size()
 
     elif temp[0] == 'empty':
-        empty()
+        print(empty())
 
     elif temp[0] == 'front':
         front()
