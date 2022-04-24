@@ -12,21 +12,23 @@ for t in test:
         word.append(t)
         continue
     else:
-        for w in word:
-            if len(t) < len(w):
-                word.insert(word.index(w), t)
+        for w in range(len(word)):
+            if len(t) < len(word[w]):
+                word.insert(w, t)
                 print(word)
                 break
-            elif len(t) > len(w):
+            elif len(t) > len(word[w]):
                 continue
             else:
-                if w == t:
+                if word[w] == t:
                     break
-                for j in range(len(w)):
-                    if ord(w[j]) > ord(t[j]):
-                        word.insert(word.index(w), t)
-                    elif ord(w[j]) > ord(t[j]):
-                        break
+                cnt = 0
+                while True:
+                    if ord(word[w][cnt]) > ord(t[cnt]):
+                        
+
+                break
+
 
 
         else:
