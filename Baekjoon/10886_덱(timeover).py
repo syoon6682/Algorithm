@@ -9,7 +9,7 @@ def push_front(x):
 def push_back(x):
     deq.append(x)
 
-
+# pop 방식이 아니라 다른 방식으로 구현해야할 듯
 def pop_front():
     if not deq:
         return -1
