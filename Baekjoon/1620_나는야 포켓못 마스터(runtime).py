@@ -1,13 +1,20 @@
-N, M = map(int, input().split())
+import sys
+
+N, M = map(int, sys.stdin.readline().split())
 
 pocketmon = list()
+answer_list = list()
 
 for _ in range(N):
-    pocketmon.append(input())
+    pocketmon.append(sys.stdin.readline().strip())
+
 
 for _ in range(M):
-    i = input()
-    if i.isdecimal() == 1:
-        print(pocketmon[int(i)-1])
+    answer_list.append(sys.stdin.readline().strip())
+
+
+for a in answer_list:
+    if a.isdecimal():
+        print(pocketmon[int(a)-1])
     else:
-        print(pocketmon.index(i)+1)
+        print(pocketmon.index(a)+1)
