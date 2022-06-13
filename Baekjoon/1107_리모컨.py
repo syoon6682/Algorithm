@@ -1,55 +1,43 @@
 N = int(input())
-n = int(input())
-broken = list()
-if n != 0:
+M = int(input())
+if M != 0:
     broken = list(map(int, input().split()))
-elif n == 0:
+else:
     broken = list()
 
-sol = abs(100-N)
 
-
-def tester(num):
-    global N
-    num = str(num)
-    for s in num:
+def checker(n):
+    n = str(n)
+    for s in n:
         if int(s) in broken:
             return False
     return True
 
 
-if tester(N):
-    temp = len(str(N))
-    if sol < temp:
-        print(sol)
-    else:
-        print(temp)
+if len(broken) == 10:
+    print(abs(100 - N))
 else:
-    up = N
-    down = N
-    while True:
-        up += 1
-        if down > 0:
-            down -= 1
+    if checker(N):
+        print(min(abs(100 - N), len(str(N))))
+    else:
+        up_N = N
+        down_N = N
+        while True:
+            up_N += 1
+            if down_N > 0:
+                down_N -= 1
 
-        if tester(up):
-            temp = len(str(N)) + abs(up-N)
-            if sol < temp:
-                print(sol)
-                break
-            else:
-                print(temp)
+            if abs(100-N) < abs(down_N-N):
+                print(abs(100-N))
                 break
 
-        elif tester(down):
-            temp = len(str(N)) + abs(down - N)
-            if sol < temp:
-                print(sol)
-                break
-            else:
-                print(temp)
+            if checker(down_N):
+                print(min(abs(100 - N), len(str(down_N)) + abs(down_N - N)))
                 break
 
-        if abs(N - up) > sol:
-            print(sol)
-            break
+            if checker(up_N):
+                print(min(abs(100 - N), len(str(up_N)) + abs(up_N - N)))
+                break
+
+
+
