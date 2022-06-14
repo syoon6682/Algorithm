@@ -12,24 +12,13 @@ for _ in range(N):
 for _ in range(M):
     M_list.append(sys.stdin.readline().strip())
 
-N_list.sort()
-M_list.sort()
+N_list = set(N_list)
+M_list = set(M_list)
+
+intersection = list(N_list & M_list)
+intersection.sort()
 
 
-for m in M_list:
-    if len(N_list) == 0:
-        break
-    for n in N_list:
-        if n < m:
-            N_list.remove(n)
-
-        elif n == m:
-            sol_list.append(n)
-            N_list.remove(n)
-            break
-
-        elif n > m:
-            break
-
-for s in sol_list:
-    print(s)
+print(len(intersection))
+for i in intersection:
+    print(i)
