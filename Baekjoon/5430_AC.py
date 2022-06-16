@@ -1,40 +1,49 @@
-import sys
+from collections import deque
+from sys import stdin
 
-N = int(sys.stdin.readline())
-
-
-def R(l):
-    return l[::-1]
+T = int(stdin.readline())
 
 
-def D(l):
-    if len(l) == 0:
-        return False
+for _ in range(T):
+    p = stdin.readline().strip()
+    n = int(stdin.readline())
+    l = stdin.readline()
+
+    # 문자열 슬라이싱
+    if n != 0:
+        list1 = deque(list(l[1:-2].split(',')))
     else:
-        return l[1::]
+        list1 = deque()
 
+    # 연산 근데 가지치기를 먼저 곁들인
+    cnt = p.count('D')
+    reverse_cnt = len(p) - cnt
 
-for _ in range(N):
-    func = sys.stdin.readline()
-    count_D = func.count('D')
-    list_len = int(sys.stdin.readline())
-    if list_len == 0:
-        list1 = sys.stdin.readline()
-        list1 = list()
-    else:
-        list1 = sys.stdin.readline()
-        list1 = list1[1:-2]
-        list1 = list(map(int, list1.split(',', list_len-1)))
-
-    if list_len < count_D:
+    if cnt > len(list1):
         print('error')
     else:
-        for f in func:
+        status = True
+        s = 0
+        e = len(p)
+        while True:
+            if s == e:
+                break
+            elif p[s] == 'R':
+                if status:
+                    status = False
+                else:
+                    status = True
+            elif p[s] == 'D':
+                if status:
+                    list1.popleft()
+                else:
+                    list1.pop()
 
-            if f == 'R':
-                list1 = R(list1)
-            elif f == 'D':
-                list1 = D(list1)
-        print(list1)
+            s += 1
 
+        if reverse_cnt // 2:
+            print(list(map(int, list1)))
+        else:
+            list1.reverse()
+            print(list(map(int, list1)))
 
