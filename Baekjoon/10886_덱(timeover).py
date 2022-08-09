@@ -3,18 +3,21 @@ deq = list()
 
 
 def push_front(x):
-    deq.insert(0, x)
+    global deq
+    deq = [x] + deq
 
 
 def push_back(x):
     deq.append(x)
 
-# pop 방식이 아니라 다른 방식으로 구현해야할 듯
+
 def pop_front():
+    global deq
     if not deq:
         return -1
     else:
-        rlt = deq.pop(0)
+        rlt = deq[0]
+        deq = deq[1:]
         return rlt
 
 
@@ -69,3 +72,4 @@ for _ in range(N):
         print(front())
     elif temp[0] == 'back':
         print(back())
+        
