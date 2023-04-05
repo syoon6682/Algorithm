@@ -1,18 +1,8 @@
-def powerset(idx, N):
+a = [3, 2.5, 3.5, 3.5, 2.5, 3, 2, 4, 3, 3, 3, 3.5, 3, 3, 3.5, 2.5, 4.5, 3.5, 3, 3, 3, 3, 3, 3]
 
-    if idx == N:  # 종료 조건
-        print(bit)
-        return
+print(sum(a)/len(a))
 
-    bit[idx] = 0
-    powerset(idx + 1, N)
-
-    bit[idx] = 1
-    powerset(idx + 1, N)
-
-
-a = [0, 7, 2, 3]
-N = len(a)
-bit = [0] * N
-
-powerset(idx=0, N=N)
+b = 'abc d'
+c = ' '
+d = 'e'
+print(b+c+d)

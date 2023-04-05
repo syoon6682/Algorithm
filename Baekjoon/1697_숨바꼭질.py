@@ -1,22 +1,27 @@
-N, M = map(int, input().split())
+from collections import deque
 
-visited = [N]
+N, K = map(int, input().split())
+deq = deque()
+visited = list()
+deq.append(N)
+visited.append(N)
+cnt = 0
+while True:
+    if K in visited:
+        break
 
-def bfs(m):
-    cnt = 0
-    point = 0
-    while True:
-        if m in visited:
-            return cnt
-        if visited[point] - 1 >= 0 and visited[point] - 1 not in visited:
-            visited.append(visited[point] - 1)
-        elif visited[point] + 1 <= 100000 and visited[point] + 1 not in visited:
-            visited.append(visited[point] + 1)
-        elif visited[point] * 2 <= 100000 and visited[point] * 2 not in visited:
-            visited.append(visited[point] * 1)
+    for _ in range(len(deq)):
+        test = deq.popleft()
 
-        point += 1
-        cnt += 1
+        visited.append(test-1)
+        deq.append(test-1)
+
+        visited.append(test+1)
+        deq.append(test+1)
+
+        visited.append(test*2)
+        deq.append(test*2)
+    cnt += 1
 
 
-print(bfs(M))
+print(cnt)
