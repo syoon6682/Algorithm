@@ -9,7 +9,7 @@ end = -1
 def push(n):
     global end
     queue.append(n)
-    end += 1
+    end  = end + 1
 
 
 def size():
